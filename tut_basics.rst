@@ -28,7 +28,7 @@ numpy array as below, or when writing the data to disk, or plotting it):
 
 .. ipython::
 
-  In [4]: print t_av[:] # Slower: data is loaded, and the averaging is carried out
+  In [4]: print(t_av[:]) # Slower: data is loaded, and the averaging is carried out
 
 This should be kept in mind for the rest of the tutorial! We'll get a bit lazy:
 what line 3 in the code above really does is return a new PyGeode variable
@@ -49,7 +49,7 @@ variable we just saw:
 
 .. ipython::
 
-  In [5]: print t1.Temp(lat=(30, 50), lon=(100, 180))
+  In [5]: print(t1.Temp(lat=(30, 50), lon=(100, 180)))
   
   # We can take a look at the latitude grid points for reference
   In [6]: t1.Temp.lat[:] 
@@ -71,20 +71,20 @@ not necessarily the same length), even if some of them are of length 1.
 
 .. ipython::
 
-  In [6]: print t1.Temp(lat=12)
+  In [6]: print(t1.Temp(lat=12))
 
 If the (zero-based) index is more convenient, you can specify this by prefixing
 the axis name with ``i_``:
 
 .. ipython::
 
-  In [5]: print t1.Temp(i_lat=5).lat
+  In [5]: print(t1.Temp(i_lat=5).lat)
 
 Negative values index the axes in reverse, as in Python:
 
 .. ipython::
 
-  In [5]: print t1.Temp(i_lat=-5).lat
+  In [5]: print(t1.Temp(i_lat=-5).lat)
 
 Another useful prefix is ``l_``, which lets you select an arbitrary set of
 points:
@@ -120,16 +120,16 @@ this case in days) from a reference date:
 
   In [10]: from pygeode.tutorial import t2
 
-  In [5]: print t2.time.startdate
+  In [5]: print(t2.time.startdate)
 
-  In [5]: print t2.time.values
+  In [5]: print(t2.time.values)
 
 Time axes can be subsetted exactly as above, in which case the requested value
 is matched against this offset:
 
 .. ipython::
 
-  In [5]: print t2.Temp(time=8).time
+  In [5]: print(t2.Temp(time=8).time)
 
 However, these can be difficult to use directly, and can easily correspond to
 very different dates if two time axes have different reference dates. Other
@@ -275,7 +275,7 @@ not be simply mapped to one another, PyGeode will raise an exception:
 
   # Subsetted longitude axes are not compatible:
   In [12]: try: print (t2.Temp(lon=(0, 180)) + t2.Temp(lon=(120, 240))).lon
-     ....:except ValueError as e: print e.message
+     ....:except ValueError as e: print(e.message)
 
 
 Reductions (Averages, Standard deviations)
@@ -288,7 +288,7 @@ example,
 
 .. ipython::
 
-  In [4]: print t2.Temp.mean('pres', pyg.Lon)
+  In [4]: print(t2.Temp.mean('pres', pyg.Lon))
   
 This computes an average over the both the pressure and longitude axes. You can
 specify axes in three ways:
@@ -318,13 +318,13 @@ surface area near the poles:
 
 .. ipython::
 
-  In [6]: print t2.Temp.lat.weights
+  In [6]: print(t2.Temp.lat.weights)
 
 You can turn this off, if desired, by specifying ``weights=False`` as a keyword argument:
 
 .. ipython::
 
-  In [6]: print t2.Temp.mean('lat', weights=False)
+  In [6]: print(t2.Temp.mean('lat', weights=False))
 
 Alternatively, you can specify your own weights to use, in the form of a PyGeode
 variable with the same axes as those you would like to weight:
@@ -363,7 +363,7 @@ be specified; those that are not will be appended in their present order.
 
   In [8]: t2.Temp.axes
 
-  In [9]: print t2.Temp.transpose('lon', 'lat', 'pres', 'time').axes
+  In [9]: print(t2.Temp.transpose('lon', 'lat', 'pres', 'time').axes)
 
 :func:`Var.replace_axes()` replaces any or all axes of a variable. The new
 axes must have the same length as those they are replacing.
@@ -383,13 +383,13 @@ all degenerate axes. Several other methods of calling are also available:
 .. ipython::
 
   # Squeeze all degenerate axes
-  In [8]: print t2.Temp(time = 4, lon = 20).squeeze()
+  In [8]: print(t2.Temp(time = 4, lon = 20).squeeze())
 
   # Squeeze only the time axis (if it is degenerate)
-  In [8]: print t2.Temp(time = 4, lon = 20).squeeze('time')
+  In [8]: print(t2.Temp(time = 4, lon = 20).squeeze('time'))
 
   # Select a single value then squeeze the time axis
-  In [8]: print t2.Temp.squeeze(time = 4)
+  In [8]: print(t2.Temp.squeeze(time = 4))
 
   # Select a single value and sqeeze the time axis using a selection prefix
   In [8]: print t2.Temp(s_time = 4, lon = (20, 40))
