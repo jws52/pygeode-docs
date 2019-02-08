@@ -35,7 +35,7 @@ variables have equivalent versions that act on whole datasets:
 
   In [2]: print(t2.transpose('time', 'lon', 'lat', 'pres'))
 
-  In [2]: print t2.extend(0, pyg.NamedAxis(name = 'member', values=np.arange(5)))
+  In [2]: print(t2.extend(0, pyg.NamedAxis(name = 'member', values=np.arange(5))))
 
 If you have a custom operation you need to perform, or perhaps a more
 complicated set of operations, this can also be done. Write a function that
@@ -63,7 +63,7 @@ One can then combine these datasets
 
 .. ipython::
 
-  In [6]: print t_5s + t_5n
+  In [6]: print(t_5s + t_5n)
 
   In [7]: print(t_5n.rename_vars(Temp_5N = 'T_5n'))
 

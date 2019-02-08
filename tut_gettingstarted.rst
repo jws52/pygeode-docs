@@ -92,7 +92,7 @@ loaded or computed.  We can, nonetheless, manipulate this variable as if it has:
 
   In [11]: Tcz = Tc.mean('lon')        # Compute the zonal mean
 
-  In [12]: print Tcz 
+  In [12]: print(Tcz)
 
   In [13]: Tcp = Tc - Tcz              # Compute anomaly from the zonal mean
 
