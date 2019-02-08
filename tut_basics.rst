@@ -275,7 +275,7 @@ not be simply mapped to one another, PyGeode will raise an exception:
 
   # Subsetted longitude axes are not compatible:
   In [12]: try: print((t2.Temp(lon=(0, 180)) + t2.Temp(lon=(120, 240))).lon)
-     ....:except ValueError as e: print(e.message)
+     ....:except ValueError as e: print(e)
 
 
 Reductions (Averages, Standard deviations)
